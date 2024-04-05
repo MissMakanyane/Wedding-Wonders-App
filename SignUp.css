@@ -1,0 +1,70 @@
+body {
+    background-image: url("./44444444.jpeg");   
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container{
+    background-color: antiquewhite;
+    height: 750px;
+    width: 0px;
+    margin-left: 150px;
+    margin-top: 30px;
+    border-radius: 15px;
+    position: relative;
+    display: inline-block;
+}
+.back{
+    height: 750px;
+    width: 900px;
+    margin-left: 150px;
+    border-radius: 15px;
+   
+
+    
+}
+.Card {
+    position: absolute;
+    height:500px;
+    width: 370px;
+    border-radius: 15px;
+    background-color: aliceblue;
+    margin-top: -700px;
+    margin-left: 550px;
+    margin-right: auto;
+    border: 10px;
+    opacity: 0.5;
+}
+.form-group {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.form-group label {
+    display: hsl(0, 0%, 6%);
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: hsl(120, 8%, 3%);
+}
+.form-group input,
+.form-group textarea {
+    width: 90%;
+    padding: 8px;
+}
+.form-group textarea {
+    height: 100px;
+}
+.form-group input[type="submit"] {
+    background-color: hwb(134 5% 52%);
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+button{
+    height: 30px;
+    width: 150px;
+    background-color: #837C6A;
+    border-radius: 5px;
+    color: hwb(0 98% 0%);
+}
