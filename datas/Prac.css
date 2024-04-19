@@ -1,0 +1,78 @@
+body {
+    background-image: url("/static/South.jpeg");
+    font-family: Arial, sans-serif;
+    text-align: center; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+#language-list {
+    margin-top: 200px;
+}
+
+#language-list li {
+    margin-bottom: 100px;
+}
+
+#language-list li span {
+    margin-right: 10px;
+}
+
+#language-list li button {
+    margin-left: 100px;
+}
+
+/* Style the employee cards */
+.card-employeeV,
+.card-employeeP,
+.card-employeeL,
+.card-employeeM,
+.card-employeeR,
+.card-employeePR,
+.card-employeeRK {
+  margin-bottom: 20px;
+  width: 300px;
+  display: inline-block;
+}
+
+.card-employeeV img,
+.card-employeeP img,
+.card-employeeL img,
+.card-employeeM img,
+.card-employeeR img,
+.card-employeePR img,
+.card-employeeRK img {
+  width: 100%;
+  height: auto;
+}
+
+.card-employeeV .card-text,
+.card-employeeP .card-text,
+.card-employeeL .card-text,
+.card-employeeM .card-text,
+.card-employeeR .card-text,
+.card-employeePR .card-text,
+.card-employeeRK .card-text {
+  text-align: left;
+}
+
+/* Responsive styles using Bootstrap classes */
+@media (max-width: 767px) {
+  .card-employeeV,
+  .card-employeeP,
+  .card-employeeL,
+  .card-employeeM,
+  .card-employeeR,
+  .card-employeePR,
+  .card-employeeRK {
+    width: 100%;
+  }
+}
+
+

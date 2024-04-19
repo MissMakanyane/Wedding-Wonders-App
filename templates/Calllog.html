@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/SignUp.css">
+        <link rel="stylesheet"href="{{ url_for('static', filename='Addservices.css') }}">
+         
+    </head>
+    <body>
+
+<div class="content">
+    <center><h1>Inno's Wedding Wonders Call Log</h1></center>
+    
+  <!-- <center><div class="button-container">
+       <a><button>Add</button></a>
+        <button>Delete</button>
+      </center> -->
+
+
+  
+      <!-- <center><table  action="/Call Log" method="GET" border="1">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Cell numbers</th>
+          <th>Description</th>
+          <th> Delete</th>
+        </tr>
+      </thead> -->
+      
+       <left> <div class="button-container">
+           <a href="/add_call"><button>Add</button></a>
+            <!-- <button>Update</button>
+            <button>Delete</button> -->
+       </left>
+
+        
+
+      
+            <center> <table  action="/calllogg" method="GET" border="1">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Cell numbers</th>
+              <th> Date</th>
+              <th>Description</th>
+              <th> Delete</th>
+
+            </tr>
+          </thead>
+          {% for i in calllog %}
+            <tr>
+              <td>{{i.name}}</td>
+              <td>{{i.surname}}</td>
+              <td>{{i.date}}</td>
+              <td>{{i.cellphone_number}}</td>
+              <td>{{i.description}}</td>
+
+              
+              
+            </tr>
+            {% endfor %}
+          </table>
+        </center>
+</tbody>
+</table>
+</div>
+      
+</form>
+
+      </div> 
+    </form> 
+</div>
+</div>
+
+<script src="{{ url_for('static', filename='') }}"></script>  
+</body>
+</html>
