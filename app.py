@@ -1,5 +1,5 @@
 from ast import Call
-from flask import Flask, url_for, redirect,Response, url_for,request,render_template
+from flask import Flask, url_for, redirect, Response, request, render_template
 from flask_pymongo import PyMongo
 
 app = Flask(__name__,static_url_path=('/static'))
@@ -22,14 +22,8 @@ def signup():
         password=request.form["password"]
 
         user = {"name":name, "email": email, "password": password }
-        
-
         if  db.user.insert_one(user):
             return redirect(url_for("login"))
-        else:
-            return render_template("SignUp.html" )
-        
-
     return render_template("SignUp.html"  )
 
 # LOGIN
@@ -58,8 +52,30 @@ def login():
 def About():
         return render_template("About.html")
 
+# RINGS
 
+@app.route("/Rings")
+def Rings():
+        return render_template("Rings.html")
 
+# Traditional Attires
+
+@app.route("/TraditionalAttires")
+def Traditional_Attires():
+        return render_template("TraditionalAttires.html")
+   
+#    SUITS
+
+@app.route("/Suits")
+def Suits():
+        return render_template("Suits.html")
+   
+#    GOWNS
+   
+@app.route("/Gown")
+def Gown():
+        return render_template("Gown.html")
+   
     # ADD CALL LOG
     
 @app.route('/add_call', methods=["POST", "GET"])

@@ -1,5 +1,5 @@
 body {
-    background-image: url("./wall.jpeg");   
+    background-image: url("./wedwall.jpeg");  
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -8,7 +8,7 @@ body {
 .container {
     max-width: 400px;
     margin: 100px auto;
-    padding: 20px;
+    padding: 1px;
     background-color: #e7e0af;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,7 @@ input[type="text"], input[type="password"] {
     border-radius: 4px;
 }
 button {
-    background-color: #eaf2ea;
+    background-color: #ebf4eb;
     color: rgb(19, 17, 17);
     padding: 14px 20px;
     margin: 8px 0;

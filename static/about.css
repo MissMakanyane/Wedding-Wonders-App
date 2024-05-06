@@ -1,5 +1,5 @@
 body {
-   background-image: url("./wweedd.jpeg");   
+   background-image: url("./wedwall.jpeg");   
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
@@ -8,17 +8,20 @@ body {
 
 
 header {
-    background-color: #333;
+
+   background-color: #f0d497f4;
     color: #fff;
-    padding: 20px;
+    padding: 0px;
  }
  
  header h1 {
-    margin: 0;
+    margin: 80;
+    background-color: rgb(244, 216, 134);
+    color: #0b0b0a;
  }
  
  nav {
-    background-color: #e6e6e6f4;
+    background-color: #f0d497f4;
     padding: 10px;
  }
 
@@ -27,7 +30,7 @@ header {
  }
  
  section h2 {
-    color: #333;
+    color: #0b0b0b;
  }
  
  section ul {
@@ -36,8 +39,8 @@ header {
  }
 
  footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #f0d497f4;
+    color: #0b0b0a;
     padding: 20px;
     text-align: center;
  }

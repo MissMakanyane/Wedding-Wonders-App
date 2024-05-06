@@ -1,10 +1,11 @@
 body {
-    font-family: Arial, sans-serif;
-    background-image: url("/static/wall.jpeg");
-    position: relative;
-    background-size: cover;
-}
+  background-image: url("/static/wooooow.jpeg");   
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
+}
 .content {
     max-width: 1000px;
     margin: 50 auto;
@@ -17,19 +18,19 @@ body {
   }
   
   .button-container {
-    margin-left: 20;
+    margin-left: 200;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 200px;
   }
   
   .button-container button {
     padding: 8px 16px;
-    background-color: #4CAF50;
+    background-color: #171612;
     color: #fff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin-right: 8px;
+    margin-left: 1200px;
   }
   
   .form-container {
@@ -38,6 +39,7 @@ body {
   }
 
   table {
+    margin-top: 100px;
     width: 100%;
     border-collapse: collapse;
   }
