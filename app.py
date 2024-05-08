@@ -75,7 +75,13 @@ def Suits():
 @app.route("/Gown")
 def Gown():
         return render_template("Gown.html")
-   
+  
+#   DELETE CALL LOG
+  
+@app.route("/DeleteCalllog")
+def Delete_Calllog():     
+       return render_template("DeleteCalllog.html")
+  
     # ADD CALL LOG
     
 @app.route('/add_call', methods=["POST", "GET"])
