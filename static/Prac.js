@@ -35,4 +35,32 @@ languageForm.addEventListener("submit", function(event) {
 
         languageInput.value = "";
     }
-});
+})
+function gotoLandingPage1() {
+    
+    window.location.href = "http://127.0.0.1:5000/Rings";
+  }
+
+
+  function gotoLandingPage2() {
+    
+    window.location.href = "http://127.0.0.1:5000/Suits";
+  }
+
+
+  function gotoLandingPage3() {
+    s
+    window.location.href = "http://127.0.0.1:5000/TraditionalAttires";
+  }
+
+
+  function gotoLandingPage4() {
+    
+    window.location.href = "http://127.0.0.1:5000/Gown";
+  }
+
+
+  function gotoLandingPage6() {
+    
+    window.location.href = "";
+  }

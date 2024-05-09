@@ -7,6 +7,11 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/SignUp"
 Mongo = PyMongo(app)
 db  = Mongo.db
 
+
+app = Flask(__name__, static_url_path='/static')
+app.config["MONGO_URI"] = "mongodb://localhost:27017/SignUp"
+mongo = PyMongo(app)
+db = mongo.db
 # LANDING
 @app.route("/")
 def landing():
@@ -77,13 +82,39 @@ def Gown():
         return render_template("Gown.html")
   
 #   DELETE CALL LOG
-  
+
 @app.route("/DeleteCalllog")
 def Delete_Calllog():     
-       return render_template("DeleteCalllog.html")
-  
-    # ADD CALL LOG
+    return render_template("DeleteCalllog.html")
+    if request.method == 'POST':
+        name = request.form['name']  
+        query = {'name': name} 
+        query = {'surname': surname}
+        result = collection.delete_one(query) 
+        if result.deleted_count > 0:
+            message = 'Successfully deleted the document.'
+        else:
+            message = 'Document not found.'
+        return render_template('delete.html', message=message)
+    else:
+        return render_template('delete.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)  
     
+    # ADD CALL LOG
+    from flask import Flask, url_for, redirect, request, render_template
+from flask_pymongo import PyMongo
+
+app = Flask(__name__, static_url_path='/static')
+app.config["MONGO_URI"] = "mongodb://localhost:27017/SignUp"
+mongo = PyMongo(app)
+db = mongo.db
+
+# Your other route definitions...
+
+# ADD CALL LOG
+
 @app.route('/add_call', methods=["POST", "GET"])
 def add_call():
     if request.method == 'POST':
@@ -102,19 +133,25 @@ def add_call():
                   if ('form submission failed'):
                    return 'form unsuccessful'
         
-    return render_template("AddCallLog.html")
+    return render_template("AddCalllog.html")
+
+
 
 @app.route("/calllog", methods=["POST", "GET"] )
 def calllog():
      if request.method == 'GET':
          calllog = []
-# get finances to view in html
+
          for i in db.calllog.find():
                calllog.append(i)
-               
+               print(1)
                
     
-     return render_template("Calllog.html", calllog=calllog)
+     return render_template("addCalllog.html", calllog=calllog)
+     
+
+
+
 
 if __name__ == '__main__':
     app.run(debug = True)

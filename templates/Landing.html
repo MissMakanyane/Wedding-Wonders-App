@@ -50,7 +50,7 @@
                 
                 <p class="card-text">Rings</p>
                 <div class="card-employeeV">
-                    <img src="./static/wweedd.jpeg" class="card-img-top" alt="...">
+                    <img onclick="gotoLandingPage1('Rings');" src="./static/wweedd.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
                     
                     
@@ -61,9 +61,9 @@
                 <p class="card-text">Wedding Suits</p>
 
                 <div class="card-employeeP">
-                    <img src="./static/wed13.jpeg" class="card-img-top" alt="...">
+                    <img onclick="gotoLandingPage2('Suits');" src="./static/wed13.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
-                        
+                       
                 
                      
                     </div>
@@ -74,11 +74,11 @@
                
                 <p class="card-text">Traditional Attires</p>
                 <div class="card-employeeL">
-                    <img src="./static/trad2222.jpeg" class="card-img-top" alt="...">
+                    <img onclick="gotoLandingPage3('TraditionalAttires');" src="./static/trad2222.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
                  
-                    
-                      
+                   
+                     
                       </div>
                           
 
@@ -89,9 +89,9 @@
                            
                             <p class="card-text">Wedding Gown</p>
                             <div class="card-employeePR" >
-                                <img src="./static/image copy 2.png" class="card-img-top" alt="...">
+                                <img  onclick="gotoLandingPage4('Gown');"src="./static/image copy 2.png" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    
+                                   
                                 
                                   
                                 </div>
@@ -131,6 +131,7 @@
         <!-- Wedding Desire list will be dynamically added here -->
     </div>
 
-    <script src="./Landing.js"></script>
+    <script src="{{ url_for('static', filename='Prac.js') }}"></script>            
+
 </body>
 </html>

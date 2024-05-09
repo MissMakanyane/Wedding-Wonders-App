@@ -13,12 +13,12 @@ body {
   }
   
 
-   img {
+   /* img {
     max-width: 60%;
     max-height: 200px;
     margin: auto;
     display: block;
-}
+} */
 
   .thumbnail {
     width: 2500px;
