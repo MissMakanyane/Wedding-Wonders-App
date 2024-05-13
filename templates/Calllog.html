@@ -1,91 +1,59 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/static/Addservices.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/Addservices.css">
+</head>
+<body>
+    <div class="content">
+        <center><h1>Inno's Wedding Wonders Call Log</h1></center>
 
-         
-    </head>
-    <body>
+        <nav>
+            <ul>
+                <left>
+                    <div class="button-container">
+                        <a href="/AddItem"><button>Add</button></a>
+                    </div>
+                </left>
+            </ul>
+        </nav>
 
-<div class="content">
-    <center><h1>Inno's Wedding Wonders Call Log</h1></center>
-    
-  <!-- <center><div class="button-container">
-       <a><button>Add</button></a>
-        <button>Delete</button>
-      </center> -->
-
-
-  
-      <!-- <center><table  action="/Call Log" method="GET" border="1">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Surname</th>
-          <th>Cell numbers</th>
-          <th>Description</th>
-          <th> Delete</th>
-        </tr>
-      </thead> -->
-      
-       <left> <div class="button-container">
-           <a href="#" onclick="gotoLandingPage6('Add');" ><button>Add</button></a>
-       </left>
-
-        
-
-      
-            <center> <table  action="/calllog" method="GET" border="1">
-            <thead>
-            <tr>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Date</th>
-              <th> Cell numbers</th>
-              <th>Description</th>
-              <th> Action </th>
-              
-
-            </tr>
-          </thead>
-          {% for i in calllog %}
-            <tr>
-              <td>{{i.name}}</td>
-              <td>{{i.surname}}</td>
-              <td>{{i.date}}</td>
-              <td>{{i.cellphone_number}}</td>
-              <td>{{i.description}}</td>
-              <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="  bi bi-trash-fill" viewBox="0 0 16 16">
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-              </svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-              </svg></td>
-              
-
-             
-              
-            </tr>
-            {% endfor %}
-          </table>
+        <center>
+            <form action="/calllog" method="GET">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Date</th>
+                            <th>Cell numbers</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for calllog in calllog %}
+                        <tr>
+                            <td>{{calllog.name}}</td>
+                            <td>{{calllog.surname}}</td>
+                            <td>{{calllog.date}}</td>
+                            <td>{{calllog.cellphone_number}}</td>
+                            <td>{{calllog.description}}</td>
+                            <td>
+                                <button type="submit" name="delete" value="{{calllog.id}}">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
         </center>
-</tbody>
-</table>
-</div>
-      
-</form>
+    </div>
 
-      </div> 
-    </form> 
-</div>
-</div>
-
-<script src="{{ url_for('static', filename='') }}"></script>  
+    <script src="{{ url_for('static', filename='') }}"></script>
 </body>
 </html>

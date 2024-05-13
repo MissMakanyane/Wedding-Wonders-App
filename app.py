@@ -81,41 +81,32 @@ def Suits():
 def Gown():
         return render_template("Gown.html")
   
-#   DELETE CALL LOG
+#   DELETE CALLLOG
 
-@app.route("/DeleteCalllog")
-def Delete_Calllog():     
-    return render_template("DeleteCalllog.html")
+calllog_data = [
+    {"id": 1, "name": "John", "surname": "Doe", "date": "2024-05-10", "cellphone_number": "123456789", "description": "Sample description 1"},
+    {"id": 2, "name": "Alice", "surname": "Smith", "date": "2024-05-09", "cellphone_number": "987654321", "description": "Sample description 2"}
+]
+
+@app.route('/calllog', methods=['GET', 'POST'])
+def calllog():
     if request.method == 'POST':
-        name = request.form['name']  
-        query = {'name': name} 
-        query = {'surname': surname}
-        result = collection.delete_one(query) 
-        if result.deleted_count > 0:
-            message = 'Successfully deleted the document.'
-        else:
-            message = 'Document not found.'
-        return render_template('delete.html', message=message)
-    else:
-        return render_template('delete.html')
+        if 'delete' in request.form:
+            id_to_delete = int(request.form['delete'])
+            global calllog_data
+            calllog_data = [row for row in calllog_data if row['id'] != id_to_delete]
+            return render_template('Calllog.html', calllog=calllog_data)
 
-if __name__ == '__main__':
-    app.run(debug=True)  
-    
-    # ADD CALL LOG
-    from flask import Flask, url_for, redirect, request, render_template
-from flask_pymongo import PyMongo
+    return render_template('Calllog.html', calllog=calllog_data)
 
-app = Flask(__name__, static_url_path='/static')
-app.config["MONGO_URI"] = "mongodb://localhost:27017/SignUp"
-mongo = PyMongo(app)
-db = mongo.db
+@app.route('/AddItem')
+def add_item():   
+    return render_template("AddCalllog.html")
 
-# Your other route definitions...
 
 # ADD CALL LOG
 
-@app.route('/add_call', methods=["POST", "GET"])
+@app.route('/AddCalllog', methods=["POST", "GET"])
 def add_call():
     if request.method == 'POST':
         name = request.form['name']
@@ -128,26 +119,19 @@ def add_call():
 
         db.calllog.insert_one(call_log)
         if ('form submission success'):
-                     return redirect (url_for('calllog'))
+            calllogs = []
+
+            for log in db.calllog.find():
+                        calllogs.append(log)
+                        print(log)
+            return render_template("Calllog.html", calllog=calllogs)
         else:
                   if ('form submission failed'):
                    return 'form unsuccessful'
         
-    return render_template("AddCalllog.html")
+    return render_template("Calllog.html")
 
 
-
-@app.route("/calllog", methods=["POST", "GET"] )
-def calllog():
-     if request.method == 'GET':
-         calllog = []
-
-         for i in db.calllog.find():
-               calllog.append(i)
-               print(1)
-               
-    
-     return render_template("addCalllog.html", calllog=calllog)
      
 
 
