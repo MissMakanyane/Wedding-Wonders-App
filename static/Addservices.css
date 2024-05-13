@@ -8,8 +8,8 @@ body {
 }
 .content {
     max-width: 1000px;
-    margin: 50 auto;
-    padding: 20px;
+  
+ 
   }
   
   h1 {
@@ -18,10 +18,11 @@ body {
   }
   
   .button-container {
-    margin-left: 200;
+   
     text-align: center;
-    margin-bottom: 200px;
-  }
+   
+  margin-left: -600px;
+}
   
   .button-container button {
     padding: 8px 16px;
@@ -64,3 +65,27 @@ body {
 color: rgb(255, 47, 0);
 margin-left: 20px;
   } 
+
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #131111;
+  text-decoration: none;
+}
+
+header {
+  background-color: #fbd784;
+  color: #121010;
+  padding: 20px;
+  width: 1550px;
+}

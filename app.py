@@ -83,21 +83,30 @@ def Gown():
   
 #   DELETE CALLLOG
 
-calllog_data = [
-    {"id": 1, "name": "John", "surname": "Doe", "date": "2024-05-10", "cellphone_number": "123456789", "description": "Sample description 1"},
-    {"id": 2, "name": "Alice", "surname": "Smith", "date": "2024-05-09", "cellphone_number": "987654321", "description": "Sample description 2"}
-]
+# calllog_data = [
+#     {"id": 1,},
+#     {"id": 2}
+# ]
 
 @app.route('/calllog', methods=['GET', 'POST'])
 def calllog():
     if request.method == 'POST':
         if 'delete' in request.form:
-            id_to_delete = int(request.form['delete'])
+            print(request.form['delete'])
+            id_to_delete = request.form['delete']
             global calllog_data
-            calllog_data = [row for row in calllog_data if row['id'] != id_to_delete]
-            return render_template('Calllog.html', calllog=calllog_data)
 
-    return render_template('Calllog.html', calllog=calllog_data)
+            db.calllog.delete_many( {"surname": id_to_delete})
+            calllogs = []
+
+            for log in db.calllog.find():
+                        calllogs.append(log)
+                
+
+            # calllog_data = [row for row in calllog_data if row['id'] != id_to_delete]
+            return render_template('Calllog.html', calllog=calllogs)
+
+    return render_template('Calllog.html')
 
 @app.route('/AddItem')
 def add_item():   

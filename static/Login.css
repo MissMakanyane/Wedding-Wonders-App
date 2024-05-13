@@ -6,9 +6,10 @@ body {
     background-attachment: fixed;
 }
 .container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 1px;
+
+   max-width: 600px;
+    margin: 1px auto;
+    padding: 50px;
     background-color: #e7e0af;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
