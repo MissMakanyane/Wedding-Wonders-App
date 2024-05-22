@@ -6,8 +6,8 @@ body {
     background-attachment: fixed;
 }
 .container {
-
-   max-width: 600px;
+margin-top: 400px;
+   max-width: 400px;
     margin: 1px auto;
     padding: 50px;
     background-color: #e7e0af;

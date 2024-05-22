@@ -62,5 +62,5 @@ function gotoLandingPage1() {
 
   function gotoLandingPage6() {
     
-    window.location.href = "";
+    window.location.href = "http://127.0.0.1:5000/Display_Services";
   }

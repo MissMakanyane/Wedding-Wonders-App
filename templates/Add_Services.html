@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Services</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/Add_Services.css">
+</head>
+
+<body>
+  <div class="outer-container">
+    <div class="booking-container">
+      <h1>Services</h1>
+
+      <table id="booking-table">
+        <thead>
+       
+        </thead>
+        <tbody>
+          <!-- Bookings will be added here dynamically -->
+        </tbody>
+      </table>
+
+     
+      <form action="/Add_Services" method="POST">
+          <label for="categories">Categories:</label>
+          <input type="text" id="categories" name="categories" required>
+        
+          <label for="prices">Prices:</label>
+          <input type="prices" id="prices" name="prices" required>
+        
+          <label for="colours">Colours:</label>
+          <input type="colours" id="colours" name="colours" required>
+        
+          <label for="description">Description:</label>
+          <input type="text" id="description" name="description" maxlength="30" required>
+
+          <label for="image">Choose Image:</label>         
+                <input type="file" id="image" name="image" accept="image/*"><br><br>  
+                
+          <button type="submit">Add Services</button>
+      </form>
+
+
+</body>
+</html>

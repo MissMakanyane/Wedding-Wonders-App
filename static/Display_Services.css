@@ -23,7 +23,7 @@ body {
    
   margin-left: -600px;
 }
-  
+ 
   .button-container button {
     padding: 8px 16px;
     background-color: #171612;
@@ -83,9 +83,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+
+
 header {
   background-color: #fbd784;
   color: #121010;
   padding: 20px;
-  width: 1550px;
 }
