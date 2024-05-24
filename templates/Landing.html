@@ -13,6 +13,7 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/About">About</a></li>
+     <center><button onclick="location. href='register'">Register</button></center>
     </ul>
   </nav>
 </header>
@@ -37,12 +38,42 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/Landing.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     </head>
 
     <body>
+
+
+
+                
+        <div class="menu-container">
+          <div class="overflow-menu">
+            <input type="checkbox" id="menu-toggle" class="hidden">
+            <label for="menu-toggle" class="menu-btn"><span></span></label>
+            <ul class="menu">
+              <li class="dropdown">
+                <a href="/login" class="dropbtn">Login</a>
+                <div class="dropdown-content">
+                  <a href="/login">Client</a>
+                  <a href="/AdminLogin">Admin</a>
+                </div>
+              </li>
+
+                 <!-- Signup -->
+              <li class="dropdown">
+                <a href="#" class="dropbtn">Sign Up</a>
+                <div class="dropdown-content">
+                  <a href="/signup">Client</a>
+                  <a href="/AdminSignup">Admin</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </body>
     
           <div class="container text-center">
             <div class="row mt-3">
@@ -104,6 +135,7 @@
 
                         <div class="button-container">
                         <center><a href="/Login"><button type="submit">Login</button></a><a href="/signup"><button type="submit">Sign Up</button></a></center>
+                       
 
                           </div> 
                         <br>

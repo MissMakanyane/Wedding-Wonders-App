@@ -1,0 +1,45 @@
+body {
+    background-image: url("./wedwall.jpeg");  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container {
+margin-top: 400px;
+   max-width: 400px;
+    margin: 1px auto;
+    padding: 50px;
+    background-color: #e7e0af;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #f5cf7d;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+button {
+    background-color: #ebf4eb;
+    color: rgb(19, 17, 17);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+button:hover {
+    opacity: 0.8;
+}
+.error-message {
+    color: red;
+    text-align: center;
+}

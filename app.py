@@ -138,5 +138,43 @@ def delete_Display_Services():
 
     return render_template("Add_Services.html")
 
+
+# Register
+
+
+@app.route("/Register", methods=["POST", "GET"])
+def Register():
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form["email"]
+        password = request.form["password"]
+        cornfirmpassword = request.form["cornfirm password"]
+
+        user = {"name": name, "email": email, "password": password, "cornfirm password": cornfirmpassword}
+        if db.user.insert_one(user):
+            # return redirect(url_for("ClientsLogin"))
+            return render_template("ClientsLogin.html")
+    return render_template("Register.html")
+
+# ClientsLogin
+@app.route("/ClientsLogin", methods=["GET", "POST"])
+def ClientsLogin():
+    if request.method == "POST":
+        name = request.form["username"]
+        password = request.form["password"]
+
+        user = {"name": name, "password": password}
+        if db.user.find_one(user):
+            return render_template("ViewProduct.html")
+
+    return render_template("ClientsLogin.html")
+
+# ViewProduct
+
+@app.route("/ViewProduct")
+def ViewProduct():
+    return render_template("ViewProduct.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)

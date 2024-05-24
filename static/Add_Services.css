@@ -1,166 +1,69 @@
-/* body {
-    background-image: url("/static/qqqqq.jpeg");   
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-} */
-
-/* .container{
-    background-color: antiquewhite;
-    height: 350px;
-    width: 0px;
-    margin-left: 150px;
-    margin-top: 30px;
-    border-radius: 15px;
-    position: relative;
-    display: inline-block;
-} */
-/* .back{
-    height: 750px;
-    width: 900px;
-    margin-left: 150px;
-    border-radius: 15px;
-   
-
-    
-} */
-
-/* .container{
-    margin-left: 100px;
-    margin-top: 25px;
-} */
-
-/* .Card {
-    position: absolute;
-    height:500px;
-    width: 400px;
-    border-radius: 15px;
-    background-color: rgb(251, 230, 126);
-    margin-top: -700px;
-    margin-left: 410px;
-    margin-right: auto;
-    border: 10px;
-    opacity: 0.5;
-} */
-/* .form-group {
-    margin-bottom: 20px;
-    margin-left: 10px;
+body {
+  background-image: url("./wedwall.jpeg");   
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.container{
+  background-color: antiquewhite;
+  height: 350px;
+  width: 0px;
+  margin-left :93px;
+  margin-top: 30px;
+  border-radius: 15px;
+  position: relative;
+  display: inline-block;
+}
+.back{
+  height: 750px;
+  width: 900px;
+  margin-left: 150px;
+  border-radius: 15px;
+ 
+}
+.Card {
+  position: absolute;
+  height:400px;
+  width: 400px;
+  border-radius: 15px;
+  background-color: rgb(252, 226, 142);
+  margin-top: -650px;
+  margin-left: 400px;
+  margin-right: auto;
+  border: 10px;
+  opacity: 0.5;
+}
+.form-group {
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 .form-group label {
-    display: hsl(0, 0%, 6%);
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: hsl(120, 8%, 3%);
-} */
-/* .form-group input,
+  display: hsl(0, 0%, 6%);
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: hsl(120, 8%, 3%);
+}
+.form-group input,
 .form-group textarea {
-    width: 90%;
-    padding: 8px;
+  width: 90%;
+  padding: 8px;
 }
 .form-group textarea {
-    height: 100px;
+  height: 100px;
 }
 .form-group input[type="submit"] {
-    background-color: #0d7a26;
-    color: rgb(75, 3, 43);
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: auto;
-} */
-/* button{
-    height: 30px;
-    width: 150px;
-    background-color: white;
-    border-radius: px;
-    border-color: rgb(248, 214, 141);
-    color: rgb(12, 4, 4);
-} */
-
-/* booking.css */
-
-/* Outer container */
-/* booking.css */
-
-/* Outer container */
-.outer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
-}
-
-/* Booking container */
-.booking-container {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  width: 100%;
-}
-
-/* Heading styles */
-h1 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-/* Table styles */
-#booking-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-}
-
-#booking-table th,
-#booking-table td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-#booking-table th {
-  background-color: #f4f4f4;
-}
-
-/* Form styles */
-#booking-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-}
-
-#booking-form label {
-  font-weight: bold;
-}
-
-#booking-form input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#booking-form button {
-  grid-column: 1 / 3;
-  background-color: #acabaa;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 4px;
+  background-color: #0d7a26;
+  color: rgb(75, 3, 43);
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-#booking-form button:hover {
-  background-color: #0056b3;
+button{
+  height: 30px;
+  width: 150px;
+  background-color: white;
+  border-radius: px;
+  border-color: rgb(248, 214, 141);
+  color: rgb(12, 4, 4);
 }
-  /* #booking-form button:hover {
-    background-color: #0056b3; */
-  
