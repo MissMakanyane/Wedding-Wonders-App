@@ -72,14 +72,14 @@ def Add_Services():
         price = request.form.get("price")
         colour = request.form.get("colour")
         description = request.form.get("description")
-        image_url = request.form.get("image_url")  # Ensure you get image_url from form or set a default value
+        image = request.files['image']  # Ensure you get image_url from form or set a default value
         print("frnjif")
         services = {
             "categories": categories,
             "price": price,
             "colour": colour,
             "description": description,
-            "image_url": image_url
+            'image': image.filename
         }
         db.services.insert_one(services)
         services = []
@@ -89,13 +89,13 @@ def Add_Services():
         return render_template("Display_Services.html", services=services)
     return render_template("Display_Services.html")
 
-# Display Services
-@app.route("/Display_Servicess", methods=["POST", "GET"])
-def Display_Services():
-    services = list(db.services.find())
-    return render_template("Display_Services.html", services=services)
 
-# UPDATE    mongo.db.services.update_one({"_id": ObjectId(id)}, {"$set": {"service_name": service_name, "image_url": image_url}})
+
+# Display Services
+@app.route("/Display_Services", methods=["POST", "GET"])
+def Display_Services():
+    services =(db.services.find())
+    return render_template("Display_Services.html", services=services)
 
 @app.route("/Edit_Services", methods=["POST"])
 def update_service():
@@ -114,11 +114,11 @@ def update_service2():
     if request.method == "POST":
         id = request.form["id"]
         categories = request.form["categories"]
-        prices = request.form["prices"]
-        colours = request.form["colours"]
+        price = request.form["price"]
+        colour = request.form["colour"]
         description = request.form["description"]
     # Update service in MongoDB
-        mongo.db.services.update_one({"_id": ObjectId(id)}, {"$set": {"categories": categories, "price": prices, "colour": colours, "description": description}})
+        mongo.db.services.update_one({"_id": ObjectId(id)}, {"$set": {"categories": categories, "price": price, "colour": colour, "description": description}})
     # Redirect to the home page after updating service
         return render_template("Update.html", id=id)
     
@@ -141,38 +141,42 @@ def delete_Display_Services():
 
 # Register
 
-
 @app.route("/Register", methods=["POST", "GET"])
 def Register():
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
         password = request.form["password"]
-        cornfirmpassword = request.form["cornfirm password"]
 
-        user = {"name": name, "email": email, "password": password, "cornfirm password": cornfirmpassword}
-        if db.user.insert_one(user):
-            # return redirect(url_for("ClientsLogin"))
-            return render_template("ClientsLogin.html")
+        user = {"name": name, "email": email, "password": password}
+        if db.user2.insert_one(user):
+         return render_template ("ClientsLogin.html")
     return render_template("Register.html")
 
-# ClientsLogin
-@app.route("/ClientsLogin", methods=["GET", "POST"])
-def ClientsLogin():
+# LOGIN
+ 
+@app.route("/Clientslogin", methods=["GET", "POST"])
+def Clientslogin():
     if request.method == "POST":
         name = request.form["username"]
         password = request.form["password"]
 
         user = {"name": name, "password": password}
-        if db.user.find_one(user):
-            return render_template("ViewProduct.html")
+        if db.user2.find_one(user):
+            return redirect(url_for("ViewProduct"))
 
     return render_template("ClientsLogin.html")
 
-# ViewProduct
-
-@app.route("/ViewProduct")
+                                                                                                                                                
+@app.route("/ViewProduct", methods=["GET"])
 def ViewProduct():
+    services = list(db.services.find())
+    return render_template("ViewProduct.html", services=services)
+
+
+# VIEW
+@app.route("/View")
+def View():
     return render_template("ViewProduct.html")
 
 

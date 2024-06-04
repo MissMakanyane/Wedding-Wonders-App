@@ -1,38 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Register</title>
-  <link rel="stylesheet" type="text/css" href="./static/Register.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Register</h1>
-    <form>
-     <form action="/Register" method="post">
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-
-      <div class="form-group">
-        <label for="confirm password">Confirm Password:</label>
-        <input type="confirm password" id="confirm password" name="confirm password" required>
-      </div>
-
-      <button type="submit">Register</button>
-    </form>
-    <script src="./Register.js"></script>
-
-  </div>
-</body>
-</html>
+<html lang="en">
+  
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="/static/SignUp.css">
+            <script src="./SignUp.js" async defer></script>  
+        </head>
+        <body>
+        <div class="container">
+            <div class="image-container">
+                <img class="back" src="./static/wall.jpeg" alt="background Image">
+                <div class="Card">
+                <form action="/Register" method="post">
+                    <h1><b><center>Register<center/></b></h1>
+                    <div class="form-group">
+                        <label for="name"> Username:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Password:</label>
+                        <input type="password" id="password" name="password" maxlength="8" required>
+                    </div>
+                    <div class="form-group">
+                       <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" maxlength="8" required>
+                    </div>
+                    <br><br><br>
+                    <center><button>Submit</button></center>
+                </form>
+                    <script src="./SignUp.js"></script>
+                </div>
+            </div>
+            
+         </div>
+        
+        </body>

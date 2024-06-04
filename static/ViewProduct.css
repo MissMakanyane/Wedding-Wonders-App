@@ -8,7 +8,7 @@ body {
   }
   .content {
       max-width: 1000px;
-    
+  
    
     }
     
@@ -82,6 +82,7 @@ body {
     color: #131111;
     text-decoration: none;
   }
+
   
   
   
@@ -90,3 +91,11 @@ body {
     color: #121010;
     padding: 20px;
   }
+  
+  /* Traditional attire */
+.traditional-attire {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}

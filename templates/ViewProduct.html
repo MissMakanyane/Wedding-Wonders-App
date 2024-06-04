@@ -6,14 +6,14 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/static/ViewProduct.css">
+    <link rel="stylesheet" href="/static/Display_Services.css">
 </head>
 <body>
 
+
     
-        
     <header>
-        <center> <h1>Wedding Wonders Online Store</h1></center>
+        <center> <h1>WEDDING WONDERS</h1></center>
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
@@ -21,47 +21,41 @@
           </ul>
         </nav>
       </header>
+
       
-      <div id="cart-overlay" class="cart-overlay">
-        <div class="cart-container">
-            <h2>My Shopping Cart</h2>
-            <div id="cart-items"></div>
-        </div>
+      <body>
+       
+
+
+       
+  {% for service in services %}
+  <div class="service" >
+      <h2>{{ service['categories'] }}</h2>
+      <h2>{{ service['price'] }}</h2>
+      <h2>{{ service['colour'] }}</h2>
+      <h2>{{ service['description'] }}</h2>
+      <div class="gallery">
+        <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">      </div>
+ 
+      <form action="/view" method="post">
+        <input type="hidden" id="view_id" name="view_id" value={{ service['_id']}}><br>
+        <input type="submit" value="Veiw">
+      </form>
+
+      
+
+  </div>
+  {% endfor %}
+
+
+
+
+                
+                    </tbody>
+                </table>
+            </form>
+        </center>
     </div>
 
-      <div class="items">
-        <div class="item">
-          <img src="https://i.pinimg.com/474x/e0/8b/08/e08b08eb70e0aaf769a7bb100f389437.jpg" alt=""><br><br>
-          <p>16" curly</p>
-            <span>Item 1 - R1400</span>
-            <button onclick="addItemToCart('Item 1')">Add to Cart</button>
-        </div>
-        <br></br>
-        <div class="item">
-          <img src="https://i.pinimg.com/564x/2b/cc/aa/2bccaafa855b44c44bc3cb4c8e3eac01.jpg" alt=""><br><br>
-          <p>Elegant Wedding Dresses</p>
-            <span>Item 2 - R14000</span>
-            <button onclick="addItemToCart('Item 2')">Add to Cart</button>
-        </div>
-        <br></br>
-        <div class="item">
-          <img src="https://i.pinimg.com/474x/6b/d3/68/6bd368baf92d15bf4c243610cebb7cc4.jpg" alt=""><br><br>
-          
-          <p>Long Train Wedding Dress</p>
-            <span>Item 3 - R33200</span>
-            <button onclick="addItemToCart('Item 3')">Add to Cart</button>
-        </div>
-
-        <br></br>
-
-        <div class="item">
-        <img src="https://i.pinimg.com/564x/ea/3a/cb/ea3acbc935d4f5150308fc089588a3e1.jpg" alt=""><br><br>
-        
-        <p>Custom long sleeve wedding Dress</p>
-          <span>Item 3 - R8300</span>
-          <button onclick="addItemToCart('Item 3')">Add to Cart</button>
-      </div>
-
-    </div>
-
-   
+</body>
+</html>

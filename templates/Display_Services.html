@@ -24,7 +24,7 @@
 
       
       <body>
-  
+       
 
 
        
@@ -33,10 +33,10 @@
       <h2>{{ service['categories'] }}</h2>
       <h2>{{ service['price'] }}</h2>
       <h2>{{ service['colour'] }}</h2>
-      <h2>{{ service['describtion'] }}</h2>
+      <h2>{{ service['description'] }}</h2>
       <div class="gallery">
-        <img src="{{ url_for('static', filename='wed4.jpeg') }}" width=200 alt="">
-    </div>
+        <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">      </div>
+ 
       <form action="/delete" method="post">
         <input type="hidden" id="delete_id" name="delete_id" value={{ service['_id']}}><br>
         <input type="submit" value="Delete">
@@ -49,7 +49,6 @@
 
   </div>
   {% endfor %}
-
 
 
 
