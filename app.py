@@ -68,25 +68,26 @@ def Suits():
 @app.route('/Add_Services', methods=["POST", "GET"])
 def Add_Services():
     if request.method == 'POST':
-        categories = request.form.get("categories")
-        price = request.form.get("price")
-        colour = request.form.get("colour")
-        description = request.form.get("description")
-        image = request.files['image']  # Ensure you get image_url from form or set a default value
-        print("frnjif")
-        services = {
-            "categories": categories,
-            "price": price,
-            "colour": colour,
-            "description": description,
-            'image': image.filename
-        }
-        db.services.insert_one(services)
-        services = []
+        categories = request.form['categories']
+        price = request.form['price']
+        colour = request.form['colour']
+        description = request.form['description']
+        image = request.form['image']  # Ensure you get image_url from form or set a default value
         
-        for i in db.services.find():
-            services.append(i)
-        return render_template("Display_Services.html", services=services)
+        services = {"categories": categories,"price": price,"colour": colour,"description": description,'image': image}
+            
+            
+        db.services.insert_one(services)
+        if ('form submission success'):
+                    # print(request.form['Name'])
+                    services = db.services.find()  # Exclude password from the result
+                    # return redirect(url_for('getItems', item = item))
+                    return render_template("Display_Services.html", services=services)
+        # services = []
+        
+        # for i in db.services.find():
+        #     services.append(i)
+        # return render_template("Display_Services.html", services=services)
     return render_template("Display_Services.html")
 
 
@@ -177,7 +178,7 @@ def ViewProduct():
 # VIEW
 @app.route("/View")
 def View():
-    return render_template("ViewProduct.html")
+    return render_template("View.html")
 
 
 if __name__ == '__main__':
