@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ product['categories'] }}</h1>
+        <div class="product-details">
+            <img src="{{ product['image'] }}" alt="{{ product['categories'] }}" class="product-image">
+            <div class="product-info">
+                <p><strong>Price:</strong> R{{ product['price'] }}</p>
+                <p><strong>Colour:</strong> {{ product['colour'] }}</p>
+                <p><strong>Description:</strong> {{ product['description'] }}</p>
+            </div>
+        </div>
+        <a href="{{ url_for('ViewProduct') }}" class="back-link">Back to Products</a>
+    </div>
+</body>
+</html>

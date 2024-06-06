@@ -176,9 +176,10 @@ def ViewProduct():
 
 
 # VIEW
-@app.route("/View")
-def View():
-    return render_template("View.html")
+@app.route("/viewProduct/<product_id>")
+def ViewSingleProduct(product_id):
+    product=db.services.find_one({"_id":ObjectId(product_id)})
+    return render_template("ViewSingleProduct.html", product=product)
 
 
 if __name__ == '__main__':

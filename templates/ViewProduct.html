@@ -40,8 +40,8 @@
       <form action="/view" method="post">
         <input type="hidden" id="view_id" name="view_id" value={{ service['_id']}}><br>
 
-        
-        <input type="submit" value="Veiw">
+       <a href="{{ url_for('ViewSingleProduct', product_id=service._id) }}" class="view-link">View</a>
+     
       </form>
 
     
