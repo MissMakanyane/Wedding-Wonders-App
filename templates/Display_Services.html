@@ -30,13 +30,13 @@
        
   {% for service in services %}
   <div class="service">
-    <img src="static/images/wed4.jpeg" alt="xsehkweuhdc"> 
+    <!-- <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">  -->
     <strong><p>categories: </strong> {{service.categories}}</p>
     <strong><p>price: </strong> {{ service.price}}</p>
     <strong><p>colour: </strong>{{ service.colour }}</p>
     <strong><p>description: </strong>{{ service.description }}</p>
-    <img src={{ service['image'] }} alt="xt"> 
-    <h2>{{ service['image'] }}</h2> 
+    <img src="{{service.image_url}}" alt="xt"> 
+    <h2>{{service.image_url}}</h2> 
 
         <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">  
         <img src="./static/image/image copy 8.png" alt="xsehkweuhdc">

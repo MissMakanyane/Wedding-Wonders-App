@@ -3,7 +3,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__, static_url_path='/static')
-app.config["MONGO_URI"] = "mongodb://localhost:27017/SignUp"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/WeddingWonders"
 mongo = PyMongo(app)
 db = mongo.db
 
@@ -72,7 +72,7 @@ def Add_Services():
         price = request.form.get("price")
         colour = request.form.get("colour")
         description = request.form.get("description")
-        image_url = request.form.get("image_url")  # Ensure you get image_url from form or set a default value
+        image_url = request.files.get("image_url").filename  # Ensure you get image_url from form or set a default value
         print("price", price)
         print("image:", image_url)
         # print("image:", image_url)

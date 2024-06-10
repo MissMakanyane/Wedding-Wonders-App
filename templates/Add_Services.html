@@ -56,17 +56,26 @@
 
 
           <button type="submit" onclick="test()">Add Services</button>
-
+          
       </form>
-
+      <!-- <button onclick="test()">Test BTN</button> -->
     </thead>
     <tbody>
 </body>
 <script>
   function test() {
     const price = document.getElementById("price").value
+    const colours = document.getElementById("colour").value
+    const description = document.getElementById("description").value
+    const category = document.getElementById("categories").value
+    const image = document.getElementById("image_url").value
 
-    console.log("test:", price)
+    console.log("testing onclick")
+    console.log("test category:", category)
+    console.log("test price :", price)
+    console.log("test colours :", colours)
+    console.log("test description:", description)
+    console.log("test image:", image)
  
   }
 </script>
