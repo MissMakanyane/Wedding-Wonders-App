@@ -13,7 +13,7 @@
 
     
     <header>
-        <center> <h1>WEDDING WONDERS</h1></center>
+        <center> <h1>Services</h1></center>
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
@@ -30,17 +30,16 @@
        
   {% for service in services %}
   <div class="service">
-    <img src="static/images/{{service.image}}" alt="xsehkweuhdc">
+    <img src="static/images/wed4.jpeg" alt="xsehkweuhdc"> 
     <strong><p>categories: </strong> {{service.categories}}</p>
     <strong><p>price: </strong> {{ service.price}}</p>
     <strong><p>colour: </strong>{{ service.colour }}</p>
     <strong><p>description: </strong>{{ service.description }}</p>
-      {% comment %} <h2>{{ service['categories'] }}</h2>
-      <h2>{{ service['price'] }}</h2>
-      <h2>{{ service['colour'] }}</h2>
-      <h2>{{ service['description'] }}</h2>
-      <div class="gallery">
-        <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">      </div> {% endcomment %}
+    <img src={{ service['image'] }} alt="xt"> 
+    <h2>{{ service['image'] }}</h2> 
+
+        <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">  
+        <img src="./static/image/image copy 8.png" alt="xsehkweuhdc">
  
       <form action="/delete" method="post">
         <input type="hidden" id="delete_id" name="delete_id" value={{ service['_id']}}><br>

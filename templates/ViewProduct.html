@@ -13,7 +13,7 @@
 
     
     <header>
-        <center> <h1>WEDDING WONDERS</h1></center>
+        <center> <h1>Services</h1></center>
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
@@ -34,8 +34,10 @@
       <h2>{{ service['price'] }}</h2>
       <h2>{{ service['colour'] }}</h2>
       <h2>{{ service['description'] }}</h2>
+      <h2>{{ service['image'] }}</h2>
+
       <div class="gallery">
-        <img src="static/images/wed4.jpeg" alt="xsehkweuhdc">      </div>
+        <img src="static/wed4.jpeg" alt="xsehkweuhdc">      </div>
  
       <form action="/view" method="post">
         <input type="hidden" id="view_id" name="view_id" value={{ service['_id']}}><br>

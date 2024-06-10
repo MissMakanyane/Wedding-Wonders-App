@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect, Response, request, render_template
+from flask import Flask, url_for, redirect, Response, request, render_template,session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -10,7 +10,7 @@ db = mongo.db
 # LANDING
 @app.route("/")
 def landing():
-    return render_template("Landing.html")
+    return render_template("Access.html")
 
 # AAA
 @app.route("/aaa")
@@ -68,34 +68,37 @@ def Suits():
 @app.route('/Add_Services', methods=["POST", "GET"])
 def Add_Services():
     if request.method == 'POST':
-        categories = request.form['categories']
-        price = request.form['price']
-        colour = request.form['colour']
-        description = request.form['description']
-        image = request.form['image']  # Ensure you get image_url from form or set a default value
-        
-        services = {"categories": categories,"price": price,"colour": colour,"description": description,'image': image}
-            
-            
+        categories = request.form.get("categories")
+        price = request.form.get("price")
+        colour = request.form.get("colour")
+        description = request.form.get("description")
+        image_url = request.form.get("image_url")  # Ensure you get image_url from form or set a default value
+        print("price", price)
+        print("image:", image_url)
+        # print("image:", image_url)
+      
+        services = {
+            "categories": categories,
+            "price": price,
+            "colour": colour,
+            "description": description,
+            "image_url": image_url
+        }
         db.services.insert_one(services)
-        if ('form submission success'):
-                    # print(request.form['Name'])
-                    services = db.services.find()  # Exclude password from the result
-                    # return redirect(url_for('getItems', item = item))
-                    return render_template("Display_Services.html", services=services)
-        # services = []
+        services = []
         
-        # for i in db.services.find():
-        #     services.append(i)
-        # return render_template("Display_Services.html", services=services)
+        for i in db.services.find():
+            services.append(i)
+        return render_template("Display_Services.html", services=services)
     return render_template("Display_Services.html")
 
 
 
+
 # Display Services
-@app.route("/Display_Services", methods=["POST", "GET"])
+@app.route("/Display_Servicess", methods=["POST", "GET"])
 def Display_Services():
-    services =(db.services.find())
+    services = list(db.services.find())
     return render_template("Display_Services.html", services=services)
 
 @app.route("/Edit_Services", methods=["POST"])
@@ -180,6 +183,37 @@ def ViewProduct():
 def ViewSingleProduct(product_id):
     product=db.services.find_one({"_id":ObjectId(product_id)})
     return render_template("ViewSingleProduct.html", product=product)
+
+
+# ADDTOCART
+
+@app.route('/AddToCart', methods=['POST'])
+def add_to_cart():
+    id = request.form.get('id')
+    category = request.form.get('category')
+    price = request.form.get('price')
+    colour = request.form.get('colour')
+    description = request.form.get('description')
+    image = request.form['image']
+    item = {'id': id, 'category': category, 'price': price, 'colour': colour, 'description': description, 'image': image}
+    cart_items = session.get('cart', [])
+    cart_items.append(item)
+    session['cart'] = cart_items
+    return redirect(url_for('cart'))
+
+
+# VEIWCART
+
+
+# ACCESS
+@app.route("/Access")
+def Access():
+    return render_template("Access.html")
+
+
+# @app.route("/")
+# def Landing():
+#     return render_template("Access.html")
 
 
 if __name__ == '__main__':
