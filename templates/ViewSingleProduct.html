@@ -7,20 +7,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='ViewSingleProduct.css') }}">
 </head>
 <header>
-    <center> <h1>Wedding Wonders</h1></center>
+    <center><h1>Wedding Wonders</h1></center>
     <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/About">About</a></li>
-      </ul>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/About">About</a></li>
+        </ul>
     </nav>
-  </header>
-
+</header>
 <body>
     <div class="container">
         <h1>{{ product['categories'] }}</h1>
         <div class="product-details">
-            <img src="{{ product['image'] }}" alt="{{ product['categories'] }}" class="product-image">
+            {% if product['image_url'] %}
+            <img src="{{ url_for('static', filename='images/' ~ product['image_url']) }}" alt="{{ product['categories'] }}" class="product-image">
+            {% else %}
+            <p>No image available</p>
+            {% endif %}
             <div class="product-info">
                 <p><strong>Price:</strong> R{{ product['price'] }}</p>
                 <p><strong>Colour:</strong> {{ product['colour'] }}</p>

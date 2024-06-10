@@ -3,63 +3,44 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>View Product</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/Display_Services.css">
 </head>
 <body>
-
-
-    
     <header>
-        <center> <h1>Services</h1></center>
+        <center><h1>Services</h1></center>
         <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/About">About</a></li>
-          </ul>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/About">About</a></li>
+            </ul>
         </nav>
-      </header>
+    </header>
 
-      
-      <body>
-       
-
-
-       
-  {% for service in services %}
-  <div class="service" >
-      <h2>{{ service['categories'] }}</h2>
-      <h2>{{ service['price'] }}</h2>
-      <h2>{{ service['colour'] }}</h2>
-      <h2>{{ service['description'] }}</h2>
-      <h2>{{ service['image'] }}</h2>
-
-      <div class="gallery">
-        <img src="static/wed4.jpeg" alt="xsehkweuhdc">      </div>
- 
-      <form action="/view" method="post">
-        <input type="hidden" id="view_id" name="view_id" value={{ service['_id']}}><br>
-
-       <a href="{{ url_for('ViewSingleProduct', product_id=service._id) }}" class="view-link">View</a>
-     
-      </form>
-
+    <!-- Please use bootstrap grid and card to make this prettier and well structured 
+    https://getbootstrap.com/docs/5.3/getting-started/introduction/
+    -->
     
-
-  </div>
-  {% endfor %}
-
-
-
-
-                
-                    </tbody>
-                </table>
+    <div>
+        {% for service in services %}
+        <div class="service">
+            <h2>{{ service['categories'] }}</h2>
+            <h2>{{ service['price'] }}</h2>
+            <h2>{{ service['colour'] }}</h2>
+            <h2>{{ service['description'] }}</h2>
+            {% if service['image_url'] %}
+            <img src="{{ url_for('static', filename='images/' ~ service['image_url']) }}" alt="Service Image">
+            {% else %}
+            <p>No image available</p>
+            {% endif %}
+            <form action="/view" method="post">
+                <input type="hidden" id="view_id" name="view_id" value="{{ service['_id'] }}">
+                <a href="{{ url_for('ViewSingleProduct', product_id=service._id) }}" class="view-link">View</a>
             </form>
-        </center>
+        </div>
+        {% endfor %}
     </div>
-
 </body>
 </html>
