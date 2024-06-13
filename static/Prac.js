@@ -64,3 +64,20 @@ function gotoLandingPage1() {
     
     window.location.href = "http://127.0.0.1:5000/Display_Services";
   }
+
+
+  function updateCartCount(count) {
+    const cartCount = document.querySelector('#cartCount');
+    cartCount.textContent = count;
+}
+
+let cartCount = 0;
+
+function addToCart() {
+    cartCount++;
+    updateCartCount(cartCount);
+}
+
+function updateCartCount(count) {
+    document.getElementById('cartCount').innerText = count;
+}

@@ -193,35 +193,136 @@ def ViewSingleProduct(product_id):
     return render_template("ViewSingleProduct.html", product=product)
 
 
-# ADDTOCART
 
 @app.route('/AddToCart', methods=['POST'])
 def add_to_cart():
     id = request.form.get('id')
-    category = request.form.get('category')
+    # Name = request.form.get('Name')
     price = request.form.get('price')
-    colour = request.form.get('colour')
-    description = request.form.get('description')
+    category = request.form['category']
+    colour = request.form['colour']
+    description = request.form['description']
     image = request.form['image']
+    # item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
     item = {'id': id, 'category': category, 'price': price, 'colour': colour, 'description': description, 'image': image}
     cart_items = session.get('cart', [])
     cart_items.append(item)
     session['cart'] = cart_items
+    
     return redirect(url_for('cart'))
+
+@app.route('/ViewCart')
+def cart():
+    cart_items = session.get('cart', [])
+    total_price = sum(float(item['Amount']) for item in cart_items)
+    cart_count = len(session.get('cart', []))
+    return render_template('ViewCart.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
+
+# ADDTOCART
+
+# @app.route("/AddToCart")
+# def AddToCart():
+#     return render_template("AddToCart.html")
+
+
+# @app.route('/Cart', methods=['POST'])
+# def add_to_cart():
+#     id = request.form.get('id')
+#     category = request.form.get('category')
+#     price = request.form.get('price')
+#     colour = request.form.get('colour')
+#     description = request.form.get('description')
+#     image = request.form['image']
+#     item = {'id': id, 'category': category, 'price': price, 'colour': colour, 'description': description, 'image': image}
+#     cart_items = session.get('cart', [])
+#     cart_items.append(item)
+#     session['cart'] = cart_items
+#     print("cart items", id)
+#     print("cart items1", price)
+#     print("cart items2", colour)
+#     print("cart items3", image)
+#     print("cart items4", description)
+#     print("cart items5", category)
+#     return redirect(url_for('cart'))
 
 
 # VEIWCART
 
+# @app.route('/ViewCart')
+# def cart():
+#     cart_items = session.get('cart', [])
+#     total_price = sum(float(item['Amount']) for item in cart_items)
+#     cart_count = len(session.get('cart', []))
+#     print("cart items1", total_price)
+#     return render_template('Cart.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
+
+# # fix delete 
+# @app.route('/cart/remove', methods=['POST'])
+# def remove_from_cart():
+#     selected_items = request.form.getlist('selected_items')
+#     cart_items = session.get('cart', [])
+#     cart_items = [item for item in cart_items if item['id'] not in selected_items]
+#     session['cart'] = cart_items
+#     return redirect(url_for('cart'))
+
+# @app.route('/cart/checkout', methods=['POST'])
+# def checkout():
+#     session.pop('cart', None)
+#     return redirect('/checkout_success')
 
 # ACCESS
 @app.route("/Access")
 def Access():
-    return render_template("Access.html")
+    return render_template("Landing.html")
 
 
 # @app.route("/")
 # def Landing():
 #     return render_template("Access.html")
+
+
+cart_items = [
+    {'id': 1, 'image': 'item1.jpg', 'category': 'Electronics', 'price': 100, 'colour': 'Red', 'description': 'A cool gadget', 'quantity': 1},
+    {'id': 2, 'image': 'item2.jpg', 'category': 'Clothing', 'price': 50, 'colour': 'Blue', 'description': 'A nice shirt', 'quantity': 2},
+]
+
+def calculate_total_price(cart_items):
+    return sum(item['price'] * item['quantity'] for item in cart_items)
+
+@app.route('/')
+def index():
+    return 'Welcome to the Online Store!'
+
+@app.route("/Cart")
+def Cart():
+    return render_template("Cart.html")
+
+@app.route('/cart')
+def view_cart():
+    total_price = calculate_total_price(cart_items)
+    return render_template('view_cart.html', cart_items=cart_items, total_price=total_price)
+
+@app.route('/cart/remove', methods=['POST'])
+def remove_from_cart():
+    item_id = int(request.form['selected_items'])
+    global cart_items
+    cart_items = [item for item in cart_items if item['id'] != item_id]
+    return redirect(url_for('view_cart'))
+
+@app.route('/cart/update_quantity', methods=['POST'])
+def update_quantity():
+    item_id = int(request.form['id'])
+    new_quantity = int(request.form['quantity'])
+    for item in cart_items:
+        if item['id'] == item_id:
+            item['quantity'] = new_quantity
+            break
+    return redirect(url_for('view_cart'))
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    # Implement checkout logic here
+    return 'Checkout process initiated.'
 
 
 if __name__ == '__main__':
