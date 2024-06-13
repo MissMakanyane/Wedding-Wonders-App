@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_url_path='/static')
 app.config["MONGO_URI"] = "mongodb://localhost:27017/WeddingWonders"
+app.config['SECRET_KEY'] = 'your_secret_key' 
 mongo = PyMongo(app)
 db = mongo.db
 
@@ -180,43 +181,65 @@ def Clientslogin():
     return render_template("ClientsLogin.html")
 
                                                                                                                                                 
+# View Product
 @app.route("/ViewProduct", methods=["GET"])
 def ViewProduct():
     services = list(db.services.find())
     return render_template("ViewProduct.html", services=services)
 
-
-# VIEW
 @app.route("/viewProduct/<product_id>")
 def ViewSingleProduct(product_id):
-    product=db.services.find_one({"_id":ObjectId(product_id)})
+    product = db.services.find_one({"_id": ObjectId(product_id)})
     return render_template("ViewSingleProduct.html", product=product)
-
-
 
 @app.route('/AddToCart', methods=['POST'])
 def add_to_cart():
-    id = request.form.get('id')
-    # Name = request.form.get('Name')
-    price = request.form.get('price')
-    category = request.form['category']
-    colour = request.form['colour']
-    description = request.form['description']
-    image = request.form['image']
-    # item = {'id': id, 'Name': Name, 'Amount': Amount, 'image': image}
-    item = {'id': id, 'category': category, 'price': price, 'colour': colour, 'description': description, 'image': image}
-    cart_items = session.get('cart', [])
-    cart_items.append(item)
-    session['cart'] = cart_items
-    
+    product_id = request.form.get('product_id')
+    product = db.services.find_one({"_id": ObjectId(product_id)})
+
+    if product:
+        cart_item = {
+            'id': str(product['_id']),
+            'categories': product['categories'],
+            'price': product['price'],
+            'colour': product['colour'],
+            'description': product['description'],
+            'image_url': product['image_url'],
+            'quantity': 1
+        }
+
+        cart_items = session.get('cart', [])
+        for item in cart_items:
+            if item['id'] == cart_item['id']:
+                item['quantity'] += 1
+                break
+        else:
+            cart_items.append(cart_item)
+
+        session['cart'] = cart_items
+
     return redirect(url_for('cart'))
 
 @app.route('/ViewCart')
 def cart():
     cart_items = session.get('cart', [])
-    total_price = sum(float(item['Amount']) for item in cart_items)
-    cart_count = len(session.get('cart', []))
+    total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
+    cart_count = len(cart_items)
     return render_template('ViewCart.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
+
+@app.route('/cart/remove', methods=['POST'])
+def remove_from_cart():
+    item_id = request.form.get('selected_items')
+    cart_items = session.get('cart', [])
+    cart_items = [item for item in cart_items if item['id'] != item_id]
+    session['cart'] = cart_items
+    return redirect(url_for('cart'))
+
+@app.route('/cart/checkout', methods=['POST'])
+def checkout():
+    session.pop('cart', None)
+    return redirect('/checkout_success')
+
 
 # ADDTOCART
 
@@ -293,21 +316,21 @@ def calculate_total_price(cart_items):
 def index():
     return 'Welcome to the Online Store!'
 
-@app.route("/Cart")
-def Cart():
-    return render_template("Cart.html")
+# @app.route("/Cart")
+# def Cart():
+#     return render_template("Cart.html")
 
-@app.route('/cart')
-def view_cart():
-    total_price = calculate_total_price(cart_items)
-    return render_template('view_cart.html', cart_items=cart_items, total_price=total_price)
+# @app.route('/cart')
+# def view_cart():
+#     total_price = calculate_total_price(cart_items)
+#     return render_template('view_cart.html', cart_items=cart_items, total_price=total_price)
 
-@app.route('/cart/remove', methods=['POST'])
-def remove_from_cart():
-    item_id = int(request.form['selected_items'])
-    global cart_items
-    cart_items = [item for item in cart_items if item['id'] != item_id]
-    return redirect(url_for('view_cart'))
+# @app.route('/cart/remove', methods=['POST'])
+# def remove_from_cart():
+#     item_id = int(request.form['selected_items'])
+#     global cart_items
+#     cart_items = [item for item in cart_items if item['id'] != item_id]
+#     return redirect(url_for('view_cart'))
 
 @app.route('/cart/update_quantity', methods=['POST'])
 def update_quantity():
@@ -319,10 +342,10 @@ def update_quantity():
             break
     return redirect(url_for('view_cart'))
 
-@app.route('/checkout', methods=['POST'])
-def checkout():
-    # Implement checkout logic here
-    return 'Checkout process initiated.'
+# @app.route('/checkout', methods=['POST'])
+# def checkout():
+#     # Implement checkout logic here
+#     return 'Checkout process initiated.'
 
 
 if __name__ == '__main__':

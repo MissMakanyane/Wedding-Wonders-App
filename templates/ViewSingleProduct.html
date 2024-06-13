@@ -7,34 +7,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='ViewSingleProduct.css') }}">
 </head>
 <header>
-  
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shopping Cart</title>
-        <link rel="stylesheet" href="/static/view_one.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
-    
     <nav class="navbar">
         <h1>Online Store</h1>
         <div class="cart-icon">
-            <a href="/ViewCart" >
+            <a href="/ViewCart">
                 <i class="fas fa-shopping-cart"></i>
                 <span id="cartCount">{{ cart_count }}</span>
             </a>
         </div>
     </nav>
-
 </header>
 <body>
     <div class="container">
         <h1>{{ product['categories'] }}</h1>
         <div class="product-details">
             {% if product['image_url'] %}
-            <img src="{{ url_for('static', filename='images/' ~ product['image_url']) }}" alt="{{ product['categories'] }}" class="product-image" style="width:20; height:18rem" alt="Service Image">
-            
+            <img src="{{ url_for('static', filename='images/' ~ product['image_url']) }}" alt="{{ product['categories'] }}" class="product-image" style="width:20; height:18rem">
             {% else %}
             <p>No image available</p>
             {% endif %}
@@ -44,14 +32,11 @@
                 <p><strong>Description:</strong> {{ product['description'] }}</p>
             </div>
         </div>
-    
+        <form action="{{ url_for('add_to_cart') }}" method="post">
+            <input type="hidden" name="product_id" value="{{ product['_id'] }}">
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
         </form>
         <a href="{{ url_for('ViewProduct') }}" class="back-link">Back to Products</a>
-        <br></br>
-        <a href="{{ url_for('add_to_cart') }}" class="back-link">AddToCart</a>
-   
-      
-         
     </div>
     <script src="/static/Prac.js"></script>
 </body>

@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shopping Cart</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
     <link rel="stylesheet" href="/static/Cart.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-   
     <nav class="navbar">
         <h4>Shopping Cart</h4>
         <div class="cart-icon">
-            <a href="#" >
+            <a href="#">
                 <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count">0</span>
+                <span id="cart-count">{{ cart_count }}</span>
             </a>
         </div>
     </nav>
@@ -30,44 +27,38 @@
                 <th>Price</th>
                 <th>Colour</th>
                 <th>Description</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for item in cart_items %}
             <tr>
-                <td><img src="static/images/{{ item.image_url }}" width="100" height="100"></td>
+                <td><img src="{{ url_for('static', filename='images/' ~ item.image_url) }}" width="100" height="100"></td>
                 <td>{{ item.categories }}</td>
-                <td id="testing">R {{ item.price }}</td>
-                <td id="testing">{{ item.colour }}</td>
-                <td id="testing">{{ item.description }}</td>
+                <td>R {{ item.price }}</td>
+                <td>{{ item.colour }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
                 <td>
                     <form method="POST" action="{{ url_for('remove_from_cart') }}">
                         <input type="hidden" name="selected_items" value="{{ item.id }}">
-                        <button type="submit" class="btn btn-danger" onclick="re">Remove</button>
+                        <button type="submit" class="btn btn-danger">Remove</button>
                     </form>
                 </td>
-                
-                
             </tr>
-            
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2">Total</td>
-                <td colspan="2" id="total_price">R{{ total_price }}</td>
+                <td colspan="5">Total</td>
+                <td colspan="2">R{{ total_price }}</td>
             </tr>
         </tfoot>
     </table>
     <form method="POST" action="{{ url_for('checkout') }}">
         <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
-
     <script src="./Prac.js"></script>
-              </tr>
-            </tbody>
-          </table>
-    </div>
 </body>
 </html>
