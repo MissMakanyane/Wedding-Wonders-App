@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect, Response, request, render_template,session
+from flask import Flask, url_for, redirect, Response, request, render_template,session, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import os
@@ -241,6 +241,7 @@ def checkout():
     return redirect('/checkout_success')
 
 
+
 # ADDTOCART
 
 # @app.route("/AddToCart")
@@ -347,6 +348,48 @@ def update_quantity():
 #     # Implement checkout logic here
 #     return 'Checkout process initiated.'
 
+
+# CHECKOUT
+
+@app.route('/Checkout')
+def Checkout():
+    cart_items = session.get('cart', [])
+    total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
+    cart_count = len(cart_items)
+    return render_template('Checkout.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
+
+
+
+# @app.route('/Checkout', methods=['POST'])
+# def Checkout():
+#     data = request.get_json()
+#     data = request.json
+#     name = data.get('name')
+#     email = data.get('email')
+#     cell_number = data.get('cell_number')
+#     address = data.get('address')
+#     city = data.get('city')
+#     zip_code = data.get('zip')
+    
+   
+    # Process the order data and save it to the database
+    # ...
+    # return jsonify({'message': 'Order placed successfully'})
+
+    # data = {"name": name, "email": email,"cell_number": cell_number, "address": address, "city": city, "zip_code": zip_code,}
+    # if db.data.insert_one(data):
+    #        return redirect(url_for(""))
+    # return render_template("")
+
+# PopUpPage
+
+@app.route('/PopUpPage')
+def PopUpPage():
+    return render_template('PopUpPage.html')
+
+# @app.route('/PopUpPage')
+# def PopUpPage():
+#     return redirect(url_for('PopUpPage'))
 
 if __name__ == '__main__':
     app.run(debug=True)

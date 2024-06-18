@@ -81,3 +81,131 @@ function addToCart() {
 function updateCartCount(count) {
     document.getElementById('cartCount').innerText = count;
 }
+
+
+function incrementValue(e) {
+  e.preventDefault();
+  var fieldName = $(e.target).data('field');
+  var parent = $(e.target).closest('div');
+  var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+  if (!isNaN(currentVal)) {
+      parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+  } else {
+      parent.find('input[name=' + fieldName + ']').val(0);
+  }
+}
+
+function decrementValue(e) {
+  e.preventDefault();
+  var fieldName = $(e.target).data('field');
+  var parent = $(e.target).closest('div');
+  var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+  if (!isNaN(currentVal) && currentVal > 0) {
+      parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+  } else {
+      parent.find('input[name=' + fieldName + ']').val(0);
+  }
+}
+
+$('.input-group').on('click', '.button-plus', function(e) {
+  incrementValue(e);
+});
+
+$('.input-group').on('click', '.button-minus', function(e) {
+  decrementValue(e);
+});
+
+
+
+
+  function decreaseQuantity(itemId) {
+  var quantityElement = document.getElementById(`quantity-${itemId}`);
+    var currentQuantity = parseInt(quantityElement.textContent);
+
+    if (currentQuantity > 1) {
+      quantityElement.textContent = currentQuantity - 1;
+      updateCart(itemId, currentQuantity - 1);
+    }
+  }
+
+  function increaseQuantity(itemId) {
+    var quantityElement = document.getElementById(`quantity-${itemId}`);
+    var currentQuantity = parseInt(quantityElement.textContent);
+    quantityElement.textContent = currentQuantity + 1;
+    updateCart(itemId, currentQuantity + 1);
+  }
+
+  function updateCart(itemId, newQuantity) {
+    // Code to update the cart with the new quantity goes here
+    // This could involve making an AJAX request to the server or updating the cart state in the client-side application
+    console.log(`Item ${itemId} quantity updated to ${newQuantity}`);
+  }
+
+
+
+  // Assume session is an object that holds the cart items
+// and `session.get('cart')` returns an array of items in the cart
+
+let items = session.get('cart') || []; // Initialize items with cart items or an empty array
+
+// Example new item to add to cart
+let newItem = { id: 'your_item_id', quantity: 1 }; // Replace 'your_item_id' with actual item id
+
+let itemFound = false;
+
+// Loop through each item in the cart
+for (let i = 0; i < items.length; i++) {
+    let item = items[i];
+    
+    // Check if the item id matches the new item id
+    if (item.id === newItem.id) {
+        // If item already exists in cart, increase the quantity
+        item.quantity++;
+        itemFound = true;
+        break;
+    }
+}
+
+// If item was not found in cart, add it to the cart
+if (!itemFound) {
+    items.push(newItem);
+}
+
+// Update session variable with modified cart
+session['cart'] = items;
+
+
+
+
+
+// Assuming you have a function to retrieve the cart from the session
+function getCart() {
+  return JSON.parse(sessionStorage.getItem('cart')) || [];
+}
+
+// Assuming you have a function to update the cart in the session
+function updateCart(cart) {
+  sessionStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Function to add or update an item in the cart
+function addToCart(item) {
+  const cart = getCart();
+  let found = false;
+
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === item.id) {
+      cart[i].quantity++;
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    cart.push(item);
+  }
+
+  updateCart(cart);
+}

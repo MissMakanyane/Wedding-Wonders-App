@@ -17,16 +17,21 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/About">About</a></li>
+                <li><a href="/ViewCart">View Cart</a></li>
             </ul>
+            <div class="cart-icon">
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">{{ cart_count }}</span>
+                </a>
+            </div>
         </nav>
     </header>
 
     <!-- Please use bootstrap grid and card to make this prettier and well structured 
     https://getbootstrap.com/docs/5.3/getting-started/introduction/
     -->
-   
 
-       
         <div class="container" style="margin-top:1rem">
 
             <div class="row">
@@ -41,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ service['categories'] }}</h5>
                        
-                        <p>{{ service['price'] }}</p>
+                        <p>R {{ service['price'] }}</p>
                         <p>{{ service['colour'] }}</p>
                         <p>{{ service['description'] }}</p>
                      

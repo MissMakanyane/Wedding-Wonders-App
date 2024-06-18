@@ -39,7 +39,15 @@
                 <td>R {{ item.price }}</td>
                 <td>{{ item.colour }}</td>
                 <td>{{ item.description }}</td>
-                <td>{{ item.quantity }}</td>
+            
+                    <td>
+                        <div class="input-group w-auto justify-content-end align-items-center">
+                          <button class="button-minus border rounded-circle icon-shape icon-sm mx-1" data-field="quantity" onclick="decreaseQuantity('{{ item.id }}')">-</button>
+                          <span id="quantity-{{ item.id }}">{{ item.quantity }}</span>
+                          <button class="button-plus border rounded-circle icon-shape icon-sm" data-field="quantity" onclick="increaseQuantity('{{ item.id }}')">+</button>
+                        </div>
+                      </td>
+                </td>
                 <td>
                     <form method="POST" action="{{ url_for('remove_from_cart') }}">
                         <input type="hidden" name="selected_items" value="{{ item.id }}">
@@ -59,6 +67,6 @@
     <form method="POST" action="{{ url_for('checkout') }}">
         <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
-    <script src="./Prac.js"></script>
+    <script src="/static/Prac.js"></script>
 </body>
 </html>
