@@ -235,8 +235,8 @@ def remove_from_cart():
     session['cart'] = cart_items
     return redirect(url_for('cart'))
 
-@app.route('/cart/checkout', methods=['POST'])
-def checkout():
+@app.route('/cart/checkout-success', methods=['POST'])
+def checkout_success():
     session.pop('cart', None)
     return redirect('/checkout_success')
 
@@ -334,14 +334,27 @@ def index():
 #     return redirect(url_for('view_cart'))
 
 @app.route('/cart/update_quantity', methods=['POST'])
-def update_quantity():
-    item_id = int(request.form['id'])
-    new_quantity = int(request.form['quantity'])
-    for item in cart_items:
-        if item['id'] == item_id:
-            item['quantity'] = new_quantity
+def update_cart():
+    data = request.get_json()
+    product_id = data.get('id')
+    field = data.get('field')
+    value = data.get('value')
+
+    cart = session.get('cart', [])
+    for item in cart:
+        if item['id'] == product_id:
+            if field == 'quantity':
+                item['quantity'] = int(value)
             break
-    return redirect(url_for('view_cart'))
+
+    session['cart'] = cart
+    total = round(sum(item['price'] * item['quantity'] for item in cart), 2)
+    
+    item_price = round(next((item['price'] * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
+    return 
+
+
+
 
 # @app.route('/checkout', methods=['POST'])
 # def checkout():
@@ -351,14 +364,20 @@ def update_quantity():
 
 # CHECKOUT
 
-@app.route('/Checkout')
-def Checkout():
+@app.route('/checkout')
+def checkout():
     cart_items = session.get('cart', [])
     total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
     cart_count = len(cart_items)
     return render_template('Checkout.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
 
 
+@app.route('/client-checkout')
+def usercheckout():
+    cart_items = session.get('cart', [])
+    total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
+    # cart_count = len(cart_items)
+    return render_template('Checkout.html', total_price=total_price)
 
 # @app.route('/Checkout', methods=['POST'])
 # def Checkout():
@@ -381,6 +400,28 @@ def Checkout():
     #        return redirect(url_for(""))
     # return render_template("")
 
+
+# def update_cart_item_quantity(item_id, new_quantity):
+#     items = session.get('cart', [])
+
+#     for item in items:
+#         if item['id'] == item_id:
+#             if new_quantity > 0:
+#                 item['quantity'] = new_quantity
+#             else:
+#                 items.remove(item)
+#             break
+#     else:
+#         if new_quantity > 0:
+#             items.append({'id': item_id, 'quantity': new_quantity})
+#     session['cart'] = items
+    
+# item_id_to_update = 'your_item_id' 
+# new_quantity = 5  
+
+# update_cart_item_quantity(item_id_to_update, new_quantity)
+
+
 # PopUpPage
 
 @app.route('/PopUpPage')
@@ -390,6 +431,7 @@ def PopUpPage():
 # @app.route('/PopUpPage')
 # def PopUpPage():
 #     return redirect(url_for('PopUpPage'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

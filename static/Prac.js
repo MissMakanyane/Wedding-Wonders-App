@@ -209,3 +209,42 @@ function addToCart(item) {
 
   updateCart(cart);
 }
+
+
+// Assume session is an object that holds the cart items
+// and `session.get('cart')` returns an array of items in the cart
+
+letitems = session.get('cart') || []; // Initialize items with cart items or an empty array
+
+// Function to update item quantity in the cart
+function updateCartItemQuantity(itemId, newQuantity) {
+    // Find the item in the cart by its id
+    let itemIndex = items.findIndex(item => item.id === itemId);
+
+    if (itemIndex !== -1) {
+        // If item exists in cart, update its quantity
+        if (newQuantity > 0) {
+            // Increase quantity
+            items[itemIndex].quantity = newQuantity;
+        } else {
+            // Remove item if quantity is zero or less (optional)
+            items.splice(itemIndex, 1);
+        }
+    } else {
+        // If item does not exist in cart (optional scenario handling)
+        if (newQuantity > 0) {
+            items.push({ id: itemId, quantity: newQuantity });
+        }
+    }
+
+    // Update session variable with modified cart
+    session['cart'] = items;
+}
+
+// Example usage to increase or decrease quantity of an item
+let itemIdToUpdate = 'your_item_id'; // Replace with actual item id
+let newQuantity = 5; // Replace with desired new quantity (can be increased or decreased)
+
+// Call the function to update cart item quantity
+updateCartItemQuantity(itemIdToUpdate, newQuantity);
+
