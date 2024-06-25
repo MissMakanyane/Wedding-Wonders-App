@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1>Checkout</h1>
-  <form id="checkout-form" action="/process_checkout" method="POST">
+  <form id="checkout-form" action="/payment-successful" method="POST">
     <div class="container">
       <div class="form-group">
         <label for="name">Name:</label>
@@ -54,7 +54,9 @@
 
       <div class="form-group">
         <center>
-          <button type="submit">Continue to Checkout</button>
+        
+
+         <a href="/payment-successful"><button type="submit">Place Your Order</button> <a/>
         </center>
       </div>
     </div>

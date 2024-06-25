@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,31 +36,16 @@
             <tr>
                 <td><img src="{{ url_for('static', filename='images/' ~ item.image_url) }}" width="100" height="100"></td>
                 <td>{{ item.categories }}</td>
-                <td id="price">R {{ item.price }}</td>
+                <td id="price-{{item.id}}" >R {{ item.price }}</td>
                 <td>{{ item.colour }}</td>
                 <td>{{ item.description }}</td>
-            
-                    <td>
-                        <div class="input-group w-auto justify-content-end align-items-center">
-                          <button class="button-minus border rounded-circle icon-shape icon-sm mx-1" data-field="quantity" onclick="decreaseQuantity('{{ item.id }}')">-</button>
-                          <span id="quantity-{{ item.id }}">{{ item.quantity }}</span>
-                          <button class="button-plus border rounded-circle icon-shape icon-sm" data-field="quantity" onclick="test()">+</button>
-                        </div>
-                        <div class="d-flex">
-                        <p> Quantity </p>
-                        <select class="form-select form-select-sm w-auto" style="max-width:5rem" aria-label="Default select example" onchange="updateCart('{{ item.id }}', 'quantity', this.value)">
+                <td>
+                    <select class="form-select form-select-sm w-auto" onchange="updateCart('{{ item.id }}', 'quantity', this.value)">
+                        {% for qty in range(1, 6) %}
                             <option value="{{ qty }}" {% if qty == item.quantity %}selected{% endif %}>{{ qty }}</option>
-                          </select>
-                        </div>
-                        <!--
-                        <select class="form-select form-select-sm w-auto" onchange="updateCart('{{ item.id }}', 'quantity', this.value)"> {% for qty in range(1, 5) %}
-                            <option value="{{ qty }}" {% if qty == item.quantity %}selected{% endif %}>{{ qty }}</option>
-                            {% endfor %}
-                        </select>
-                        -->
-                      </td>
+                        {% endfor %}
+                    </select>
                 </td>
-                
                 <td>
                     <form method="POST" action="{{ url_for('remove_from_cart') }}">
                         <input type="hidden" name="selected_items" value="{{ item.id }}">
@@ -78,18 +63,11 @@
         </tfoot>
     </table>
 
-    
-   <center> <a href="{{ url_for('usercheckout') }}" class="btn btn-dark">Checkout</a></center>
+    <center><a href="{{ url_for('usercheckout') }}" class="btn btn-dark">Checkout</a></center>
     <script src="/static/Prac.js"></script>
 </body>
 
 <script>
-/*
-    function test(){
-        document.getElementById('price').innerText = 5000
-        document.getElementById('total_price').innerText = 300
-    }
-    */
     function updateCart(itemId, field, value) {
         fetch(`/cart/update_quantity`, {
             method: 'POST',
@@ -105,10 +83,8 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                
-                document.getElementById('price').innerText = data.subtotal.toFixed(2);
-                document.getElementById('total_price').innerText = data.total.toFixed(2);
-                
+                document.getElementById('total_price').innerText = 'R' + data.total.toFixed(2);
+                document.getElementById('price-' + itemId).innerText = 'R' + data.item_price.toFixed(2);
             }
         });
     }

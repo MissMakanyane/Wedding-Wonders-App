@@ -1,3 +1,12 @@
+body {
+  background-image: url("./zzoo.jpeg");   
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
 #popup-overlay {
     position: fixed;
     top: 0;

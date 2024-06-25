@@ -4,27 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault();
       const formData = new FormData(form);
       const data = {};
-      for (const [key, value] of formData.entries()) {
-        data[key] = value;
-      }
-      fetch('/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+     
+      window.location.replace("/payment-successful")
       })
       .then(response => response.json())
       .then(data => {
         alert('Order placed successfully!');
         form.reset();
       })
-      .catch(error => {
-        alert('Error placing order. Please try again.');
-        console.error(error);
-      });
+      
     });
-  });
+
 
 
 

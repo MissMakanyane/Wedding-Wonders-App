@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url("./zzoo.jpeg");   
+    background-image: url("/image\ copy\ 2.png");   
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,11 +73,11 @@ body {
 .h1{
    background-color: rgb(204, 220, 220);
   
-   
+  
 }
 
 
-.container {
+.container {background-image: url("/image\ copy\ 2.png");
     display: flex;
     flex-direction: column; /* Arrange content in a column */
     justify-content: center; /* Center content vertically */

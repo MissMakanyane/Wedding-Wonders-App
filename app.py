@@ -332,27 +332,22 @@ def index():
 #     global cart_items
 #     cart_items = [item for item in cart_items if item['id'] != item_id]
 #     return redirect(url_for('view_cart'))
-
 @app.route('/cart/update_quantity', methods=['POST'])
 def update_cart():
     data = request.get_json()
     product_id = data.get('id')
-    field = data.get('field')
-    value = data.get('value')
+    quantity = int(data.get('value'))
 
     cart = session.get('cart', [])
     for item in cart:
         if item['id'] == product_id:
-            if field == 'quantity':
-                item['quantity'] = int(value)
+            item['quantity'] = quantity
             break
 
     session['cart'] = cart
-    total = round(sum(item['price'] * item['quantity'] for item in cart), 2)
-    
-    item_price = round(next((item['price'] * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
-    return 
-
+    total = round(sum(float(item['price']) * item['quantity'] for item in cart), 2)
+    item_price = round(next((float(item['price']) * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
+    return jsonify({'success': True, 'total': total, 'item_price': item_price})
 
 
 
@@ -378,6 +373,13 @@ def usercheckout():
     total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
     # cart_count = len(cart_items)
     return render_template('Checkout.html', total_price=total_price)
+
+@app.route('/payment-successful')
+def success():
+    session.pop('cart', None)
+    return render_template('success.html')
+
+
 
 # @app.route('/Checkout', methods=['POST'])
 # def Checkout():
