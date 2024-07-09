@@ -1,0 +1,51 @@
+body {
+   background-image: url("./wedwall.jpeg");   
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}
+
+
+header {
+
+   background-color: #f0d497f4;
+    color: #fff;
+    padding: 0px;
+ }
+ 
+ header h1 {
+    margin: 80;
+    background-color: rgb(244, 216, 134);
+    color: #0b0b0a;
+ }
+ 
+ nav {
+    background-color: #f0d497f4;
+    padding: 10px;
+ }
+
+ section {
+    margin-bottom: 30px;
+ }
+ 
+ section h2 {
+    color: #0b0b0b;
+ }
+ 
+ section ul {
+    list-style-type: none;
+    padding: 0;
+ }
+
+ footer {
+    background-color: #f0d497f4;
+    color: #0b0b0a;
+    padding: 20px;
+    text-align: center;
+ }
+ 
+ footer p {
+    margin: 0;
+ }
+ 
