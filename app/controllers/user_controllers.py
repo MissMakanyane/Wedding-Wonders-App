@@ -1,15 +1,10 @@
-from flask import Flask, url_for, redirect, Response, request, render_template,session, jsonify
+from flask import request, render_template
 from ..models.users_model import User 
-from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
-
-
-
 
 def landing():
     return render_template("Access.html")
-# Register
 
+# Register Client
 def Register():
     if request.method == "POST":
         name = request.form["name"]
@@ -17,12 +12,19 @@ def Register():
         password = request.form["password"]
 
         details = {"name": name, "email": email, "password": password}
+        
+        if (User.check_client_email(email)):
+            print("found")
+        else:
+            print("not found")
+       
+       
         if (User.create_user(details)):
          return render_template ("ClientsLogin.html")
      
     return render_template("Register.html")
 
-# Clientslogin
+# Login Client
 
 def Clientslogin():
     if request.method == "POST":
@@ -35,7 +37,7 @@ def Clientslogin():
             return render_template("ViewProduct.html")
     return render_template("ClientsLogin.html")
 
-# SIGNUP
+# Register Admin
 
 def signup():
     if request.method == "POST":
@@ -45,16 +47,20 @@ def signup():
  
         SignupDetails = {"name": name, "email": email, "password": password}
         
-        # check if user exist using email / username
+        # check if user exist using email
         
+        if (User.check_admin_email(email)):
+            print("found")
+        else:
+            print("not found")
         
-        
-        
+      
+       
         if (User.admin_signup(SignupDetails)):
             return render_template ("Login.html")
     return render_template("SignUp.html")
 
-# LOGIN
+# Login Admin
 
 def login():
     if request.method == "POST":
@@ -62,6 +68,9 @@ def login():
         password = request.form["password"]
 
         AdminDetails = {"name": name, "password": password}
+        
+        
+        
         if (User.admin_login(AdminDetails)):
             return render_template("Add_Services.html")
 
