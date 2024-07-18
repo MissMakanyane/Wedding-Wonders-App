@@ -1,4 +1,4 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 from ..models.users_model import User 
 
 def landing():
@@ -34,7 +34,7 @@ def Clientslogin():
         LoginDetails = {"name": name, "password": password}
        
         if (User.login_user(LoginDetails)):
-            return render_template("ViewProduct.html")
+            return redirect(url_for("Services.ViewProduct"))
     return render_template("ClientsLogin.html")
 
 # Register Admin
@@ -55,7 +55,6 @@ def signup():
             print("not found")
         
       
-       
         if (User.admin_signup(SignupDetails)):
             return render_template ("Login.html")
     return render_template("SignUp.html")

@@ -53,10 +53,10 @@
                      
                       <form action="/view" method="post">
                         <input type="hidden" id="view_id" name="view_id" value="{{ service['_id'] }}">
-                        <a class="btn btn-primary" href="{{ url_for('ViewSingleProduct', product_id=service._id) }}">View</a>
+                        <a class="btn btn-primary" href="{{ url_for('Services.ViewSingleProduct', product_id=service._id) }}">View</a>
                     </form>
                     
-                    
+                   
                     </div>
                   </div>
               </div>

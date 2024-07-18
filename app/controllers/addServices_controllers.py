@@ -51,14 +51,16 @@ def Display_Services():
     return render_template("Display_Services.html", services=services)
 
 def ViewProduct():
-    services = list(Services.View())
-    
+    services = list(Services.display_items())
     return render_template("ViewProduct.html", services=services)
 
 def ViewSingleProduct(product_id):
-    product_id = list(Services.View(product_id))
-    return render_template("ViewSingleProduct.html", product_id=product_id)
+    product = list(Services.View(product_id))
+    return render_template("ViewSingleProduct.html", product=product)
 
+# def ViewSingleProduct(product_id):
+#     product = Services.View(product_id)
+#     return render_template("ViewSingleProduct.html", product=product)
 
    
 def upload_file(file):
