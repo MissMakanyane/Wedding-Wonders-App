@@ -50,12 +50,17 @@
                         <p>R {{ service['price'] }}</p>
                         <p>{{ service['colour'] }}</p>
                         <p>{{ service['description'] }}</p>
-                     
-                      <form action="/view" method="post">
-                        <input type="hidden" id="view_id" name="view_id" value="{{ service['_id'] }}">
-                        <a class="btn btn-primary" href="{{ url_for('Services.ViewSingleProduct', product_id=service._id) }}">View</a>
-                    </form>
                     
+                      <form action="/viewProduct" method="post">
+                        <input type="hidden" id="view_id" name="view_id" value="{{ service['_id'] }}">
+                        <input type="hidden" id="view_id" name="categories" value="{{ service['categories'] }}">
+                        <input type="hidden" id="view_id" name="price" value="{{ service['price'] }}">
+                        <input type="hidden" id="view_id" name="colour" value="{{ service['colour'] }}">
+                        <input type="hidden" id="view_id" name="description" value="{{ service['description'] }}">
+                        <input type="hidden" id="view_id" name="image_url" value="{{ service['image_url'] }}">
+                        <button class="btn btn-primary" type="submit">View</button>
+                    </form>
+                   
                    
                     </div>
                   </div>

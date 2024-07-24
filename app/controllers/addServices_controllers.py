@@ -20,7 +20,7 @@ def Add_Services():
         colour = request.form.get("colour")
         description = request.form.get("description")
         image_file = request.files.get("image_url")
-       
+      
         # Save the file and store the filename in the database
         if image_file:
             filename = secure_filename(image_file.filename)
@@ -54,9 +54,18 @@ def ViewProduct():
     services = list(Services.display_items())
     return render_template("ViewProduct.html", services=services)
 
-def ViewSingleProduct(product_id):
-    product = list(Services.View(product_id))
-    return render_template("ViewSingleProduct.html", product=product)
+def ViewSingleProduct():
+    if request.method == "POST":
+        id = request.form['view_id']
+        price = request.form['price']
+        colour = request.form['colour']
+        categories = request.form['categories']
+        description = request.form['description']
+        image_url = request.form['image_url']
+        print("md", id)
+        print("mdp", price)
+        return render_template("ViewSingleProduct.html", id=id, price=price,colour=colour ,categories=categories, description=description, image_url=image_url)
+
 
 # def ViewSingleProduct(product_id):
 #     product = Services.View(product_id)

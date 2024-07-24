@@ -4,7 +4,9 @@ from werkzeug.utils import secure_filename
 
 class Carts_Services:
     
-    def Add(product_id):
-        mongo.db.services.find_one({"_id": ObjectId(product_id)})
+    def find_product(product_id):
+        return mongo.db.services.find_one({"_id": ObjectId(product_id)})
+        
+    
     
     

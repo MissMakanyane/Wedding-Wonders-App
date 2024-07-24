@@ -4,15 +4,12 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from ..models.addToCart_models import Carts_Services
 
-
-
-
-
-def add_to_cart(product_id):
+def add_to_cart():
     product_id = request.form.get('product_id')
-    product = list(Carts_Services.Add(product_id))
+    product = Carts_Services.find_product(product_id)
+    print('id', product_id)
+    print('prod', product)
    
-
     if product:
         cart_item = {
             'id': str(product['_id']),
@@ -33,16 +30,13 @@ def add_to_cart(product_id):
             cart_items.append(cart_item)
 
         session['cart'] = cart_items
-
-    return redirect(url_for('cart'))
-
+    return redirect(url_for('cart.cart'))
 
 def cart():
     cart_items = session.get('cart', [])
     total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
     cart_count = len(cart_items)
     return render_template('ViewCart.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
-
 
 def update_cart():
     data = request.get_json()
@@ -60,7 +54,6 @@ def update_cart():
     item_price = round(next((float(item['price']) * item['quantity'] for item in cart if item['id'] == product_id), 0), 2)
     return jsonify({'success': True, 'total': total, 'item_price': item_price})
 
-
 def remove_from_cart():
     item_id = request.form.get('selected_items')
     cart_items = session.get('cart', [])
@@ -68,11 +61,9 @@ def remove_from_cart():
     session['cart'] = cart_items
     return redirect(url_for('cart'))
 
-
 def checkout_success():
     session.pop('cart', None)
     return redirect('/checkout_success')
-
 
 def checkout():
     cart_items = session.get('cart', [])
@@ -80,16 +71,13 @@ def checkout():
     cart_count = len(cart_items)
     return render_template('Checkout.html', cart_items=cart_items, total_price=total_price, cart_count=cart_count)
 
-
-
 def usercheckout():
     cart_items = session.get('cart', [])
     total_price = sum(float(item['price']) * item['quantity'] for item in cart_items)
     # cart_count = len(cart_items)
     return render_template('Checkout.html', total_price=total_price)
 
-
-
 def success():
     session.pop('cart', None)
     return render_template('success.html')
+
