@@ -4,6 +4,8 @@ from ..controllers import addToCart_controllers
 app = Blueprint ('cart',__name__)
 
 
+app.route("/About")(addToCart_controllers.About)
+
 app.route('/AddToCart', methods=['POST'])(addToCart_controllers.add_to_cart)
 
 app.route('/ViewCart')(addToCart_controllers.cart)

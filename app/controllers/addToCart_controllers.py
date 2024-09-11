@@ -4,6 +4,11 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from ..models.addToCart_models import Carts_Services
 
+
+
+def About():
+    return render_template("About.html")
+
 def add_to_cart():
     product_id = request.form.get('product_id')
     product = Carts_Services.find_product(product_id)
@@ -59,7 +64,7 @@ def remove_from_cart():
     cart_items = session.get('cart', [])
     cart_items = [item for item in cart_items if item['id'] != item_id]
     session['cart'] = cart_items
-    return redirect(url_for('cart'))
+    return redirect(url_for('cart.cart'))
 
 def checkout_success():
     session.pop('cart', None)

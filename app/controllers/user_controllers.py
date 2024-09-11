@@ -18,7 +18,7 @@ def Register():
         else:
             print("not found")
        
-       
+      
         if (User.create_user(details)):
          return render_template ("ClientsLogin.html")
      
@@ -68,7 +68,7 @@ def login():
 
         AdminDetails = {"name": name, "password": password}
         
-        
+       
         
         if (User.admin_login(AdminDetails)):
             return render_template("Add_Services.html")

@@ -20,7 +20,7 @@ def Add_Services():
         colour = request.form.get("colour")
         description = request.form.get("description")
         image_file = request.files.get("image_url")
-      
+     
         # Save the file and store the filename in the database
         if image_file:
             filename = secure_filename(image_file.filename)
@@ -99,15 +99,13 @@ def update_service2():
     # Redirect to the home page after updating service
         return render_template("Update.html", id=id)
     
-    
-    
 # Delete Services Page
 def delete_Display_Services():
     if request.method == "POST":
         # Get form data
         id = request.form["delete_id"]
 
-        services.delete_one({"_id": ObjectId(id)})
+        Services.delete_one({"_id": ObjectId(id)})
         services = list(services.find())
         # Redirect to the services page after deleting service
         return render_template("Display_Services.html", services=services)
